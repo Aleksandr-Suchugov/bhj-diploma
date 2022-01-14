@@ -12,12 +12,11 @@ class Modal {
    * необходимо выкинуть ошибку.
    * */
   constructor(element){
-    if (element) {
-      this.element = element;
-      this.registerEvents();
-      return;
+    if (!element) {
+      throw new Error("Невалидное значение для Modal");
     }
-    throw new Error("Невалидное значение для Modal");
+    this.element = element;
+    this.registerEvents();
   }
 
   /**

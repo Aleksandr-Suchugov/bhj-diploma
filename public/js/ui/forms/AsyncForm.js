@@ -13,12 +13,11 @@ class AsyncForm {
    * через registerEvents()
    * */
   constructor(element) {
-    if (element) {
-      this.element = element;
-      this.registerEvents();
-      return;
+    if (!element) {
+      throw new Error("Невалидное значение для AsyncForm");
     }
-    throw new Error("Невалидное значение для AsyncForm");
+    this.element = element;
+    this.registerEvents();
   }
 
   /**
@@ -58,7 +57,6 @@ class AsyncForm {
    * данные, полученные из метода getData()
    * */
   submit() {
-    const options = this.getData();
-    this.onSubmit(options);
+    this.onSubmit(this.getData());
   }
 }

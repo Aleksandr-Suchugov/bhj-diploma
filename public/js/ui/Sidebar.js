@@ -39,14 +39,14 @@ class Sidebar {
     sidebarCtrlBtns.forEach(button => {
       button.addEventListener('click', (ev) => {
         ev.preventDefault();
-        switch (ev.target.innerText) {
-          case 'Вход':
+        switch (ev.target.closest('li').classList[1]) {
+          case 'menu-item_login':
             App.getModal('login').open();
           break;
-          case 'Регистрация':
+          case 'menu-item_register':
             App.getModal('register').open();
           break;
-          case 'Выйти':
+          case 'menu-item_logout':
             User.logout(response => {
               if (response.success) {
                 App.setState('init');

@@ -25,8 +25,9 @@ class User {
    * из локального хранилища
    * */
   static current() {
-    const userObj = localStorage['user'];
-    userObj ? JSON.parse(userObj) : userObj;
+    return JSON.parse(localStorage.getItem('user')); // <-- при условии пустого значения для user возвращает null, хотя в ТЗ требуется возвращать undefined
+    //const userObj = localStorage['user'];
+    //return userObj ? JSON.parse(userObj) : userObj; // <-- при условии false возвращает undefined
   }
 
   /**
@@ -38,6 +39,7 @@ class User {
       url: '/user/current',
       method: 'GET',
       responseType: 'json',
+      data: this.current(),
       callback: (err, response) => {
         (response && response.user) ? this.setCurrent(response.user) : this.unsetCurrent();
         callback(err, response);
@@ -96,9 +98,10 @@ class User {
       url: '/user/logout',
       method: 'POST',
       responseType: 'json',
+      data: this.current(),
       callback: (err, response) => {
-        if (response && response.user) {
-          this.unsetCurrent(response.user);
+        if (response) {
+          this.unsetCurrent();
         } 
         callback(err, response);
       }
