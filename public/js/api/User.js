@@ -41,7 +41,17 @@ class User {
       responseType: 'json',
       data: this.current(),
       callback: (err, response) => {
-        (response && response.user) ? this.setCurrent(response.user) : this.unsetCurrent();
+        console.log('User.fetch: ', response);
+        if (response && response.user) {
+          const user = { 
+            name: response.user.name,
+            id: response.user.id
+          }
+          this.setCurrent(user);
+        }
+        else {
+          this.unsetCurrent();
+        } 
         callback(err, response);
       }
     });
@@ -60,8 +70,13 @@ class User {
       responseType: 'json',
       data,
       callback: (err, response) => {
+        console.log('User.login: ', response);
         if (response && response.user) {
-          this.setCurrent(response.user);
+          const user = { 
+            name: response.user.name,
+            id: response.user.id
+          }
+          this.setCurrent(user);
         }
         callback(err, response);
       }
@@ -81,9 +96,14 @@ class User {
       responseType: 'json',
       data,
       callback: (err, response) => {
+        console.log('User.register: ', response);
         if (response && response.user) {
-          this.setCurrent(response.user);
-        } 
+          const user = { 
+            name: response.user.name,
+            id: response.user.id
+          }
+          this.setCurrent(user);
+        }
         callback(err, response);
       }
     });

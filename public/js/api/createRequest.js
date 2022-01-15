@@ -31,11 +31,11 @@ const createRequest = (options = {}) => {
         xhr.responseType = 'json';
         xhr.addEventListener('readystatechange', function() {
             if (xhr.status === 200 && xhr.readyState === xhr.DONE) {           
-                options.callback(xhr.response);       
+                options.callback(err = null, xhr.response);       
             }
         });
     }
     catch (err) {
-        options.callback(err);
+        options.callback(err, response = null);
     }
 }
