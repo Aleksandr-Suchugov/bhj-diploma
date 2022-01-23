@@ -4,38 +4,29 @@
  * */
 const createRequest = (options = {}) => {
     const xhr = new XMLHttpRequest;
-    let sendData;
-    let type = 0;
+    let sendDataURL = options.url;
     console.log('options: ', options);
     if (options.method !== 'GET') {
         const formData = new FormData();
         console.log('options.data: ', options.data);
         Object.entries(options.data).forEach(([key, value]) => formData.append(key, value));
-        sendData = formData;
+        sendDataURL = formData;
     }
     else {
-        sendData = `${options.url}?mail=${options.data.email}&password=${options.data.password}`;
-        type = 1;
+        Object.entries(options.data).forEach(([key, value]) => sendDataURL = sendDataURL + value);
     }
+    console.log('createRequest URL: ', sendDataURL);
     try {
-        switch (type) {
-            case 0:
-                xhr.open(options.method, options.url);
-                xhr.send(sendData);
-            break;
-            case 1:
-                xhr.open(options.method, sendData);
-                xhr.send();
-            break;
-        }
-        xhr.responseType = 'json';
-        xhr.addEventListener('readystatechange', function() {
-            if (xhr.status === 200 && xhr.readyState === xhr.DONE) {           
-                options.callback(err = null, xhr.response);       
-            }
-        });
+        xhr.open(options.method, sendDataURL);
+        xhr.send();       
     }
     catch (err) {
-        options.callback(err, response = null);
+        options.callback(err, null);
     }
+    xhr.responseType = 'json';
+    xhr.addEventListener('readystatechange', function() {
+        if (xhr.status === 200 && xhr.readyState === xhr.DONE) {           
+            options.callback(null, xhr.response);       
+        }
+    });
 }

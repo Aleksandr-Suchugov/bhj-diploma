@@ -38,7 +38,7 @@ class AccountsWidget {
     accountList.forEach(account => {
       account.closest('li').addEventListener('click', (ev) => {
         ev.preventDefault();
-        this.onSelectAccount(account);
+        AccountsWidget.onSelectAccount(account);
       });
     });
   }
@@ -57,9 +57,9 @@ class AccountsWidget {
     const data = User.current();
     if (data) {
       Account.list(data, (err, response) => {
-        console.log('ответ от Account.list: ', response);
-        this.clear();
-        this.renderItem(response);
+        console.log('ответ от Account.list - AccountsWidget: ', response);
+        AccountsWidget.clear();
+        AccountsWidget.renderItem(response);
       });
     }
   }
@@ -110,6 +110,6 @@ class AccountsWidget {
    * */
   renderItem(data){
     const accountListMenu = document.querySelector('.accounts-panel');
-    data.forEach(item => accountListMenu.insertAdjacentHTML('beforeend', this.getAccountHTML(item)));
+    data.forEach(item => accountListMenu.insertAdjacentHTML('beforeend', AccountsWidget.getAccountHTML(item)));
   }
 }

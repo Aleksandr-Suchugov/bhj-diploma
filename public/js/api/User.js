@@ -4,6 +4,8 @@
  * Имеет свойство URL, равное '/user'.
  * */
 class User {
+  static URL = '/user';
+  
   /**
    * Устанавливает текущего пользователя в
    * локальном хранилище.
@@ -39,7 +41,7 @@ class User {
       url: '/user/current',
       method: 'GET',
       responseType: 'json',
-      data: this.current(),
+      data: User.current(),
       callback: (err, response) => {
         console.log('User.fetch: ', response);
         if (response && response.user) {
@@ -47,10 +49,10 @@ class User {
             name: response.user.name,
             id: response.user.id
           }
-          this.setCurrent(user);
+          User.setCurrent(user);
         }
         else {
-          this.unsetCurrent();
+          User.unsetCurrent();
         } 
         callback(err, response);
       }
@@ -76,7 +78,7 @@ class User {
             name: response.user.name,
             id: response.user.id
           }
-          this.setCurrent(user);
+          User.setCurrent(user);
         }
         callback(err, response);
       }
@@ -102,7 +104,7 @@ class User {
             name: response.user.name,
             id: response.user.id
           }
-          this.setCurrent(user);
+          User.setCurrent(user);
         }
         callback(err, response);
       }
@@ -118,10 +120,10 @@ class User {
       url: '/user/logout',
       method: 'POST',
       responseType: 'json',
-      data: this.current(),
+      data: User.current(),
       callback: (err, response) => {
         if (response) {
-          this.unsetCurrent();
+          User.unsetCurrent();
         } 
         callback(err, response);
       }

@@ -27,7 +27,7 @@ class AsyncForm {
   registerEvents() {
     this.element.addEventListener('submit', (ev) => {
       ev.preventDefault();
-      this.submit();
+      AsyncForm.submit();
     }); 
   }
 
@@ -57,6 +57,6 @@ class AsyncForm {
    * данные, полученные из метода getData()
    * */
   submit() {
-    this.onSubmit(this.getData());
+    this.onSubmit(AsyncForm.getData());
   }
 }
