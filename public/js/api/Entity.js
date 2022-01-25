@@ -12,10 +12,10 @@ class Entity {
    * */
   static list(data, callback){
     createRequest({
-      url: Entity.URL,
+      url: this.URL,
       method: 'GET',
-      data: data,
-      callback: (err, response) => callback(err, response) 
+      data,
+      callback
     });
   }
 
@@ -26,10 +26,10 @@ class Entity {
    * */
   static create(data, callback) {
     createRequest({
-      url: Entity.URL,
+      url: this.URL,
       method: 'PUT',
-      data: data,
-      callback: (err, response) => callback(err, response)
+      data,
+      callback
     });
   }
 
@@ -39,10 +39,10 @@ class Entity {
    * */
   static remove(data, callback ) {
     createRequest({
-      url: Entity.URL,
+      url: this.URL,
       method: 'DELETE',
-      data: data,
-      callback: (err, response) => callback(err, response)
+      data,
+      callback
     });
   }
 }

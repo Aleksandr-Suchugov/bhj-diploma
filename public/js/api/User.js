@@ -38,12 +38,12 @@ class User {
    * */
   static fetch(callback) {
     createRequest({
-      url: '/user/current',
+      url: this.URL + '/current',
       method: 'GET',
       responseType: 'json',
-      data: User.current(),
+      data: this.current(),
       callback: (err, response) => {
-        console.log('User.fetch: ', response);
+        console.log('User.fetch callback response: ', response);
         if (response && response.user) {
           const user = { 
             name: response.user.name,
@@ -67,12 +67,12 @@ class User {
    * */
   static login(data, callback) {
     createRequest({
-      url: '/user/login',
+      url: this.URL + '/login',
       method: 'POST',
       responseType: 'json',
       data,
       callback: (err, response) => {
-        console.log('User.login: ', response);
+        console.log('User.login response: ', response);
         if (response && response.user) {
           const user = { 
             name: response.user.name,
@@ -93,12 +93,12 @@ class User {
    * */
   static register(data, callback) {
     createRequest({
-      url: '/user/register',
+      url: this.URL + '/register',
       method: 'POST',
       responseType: 'json',
       data,
       callback: (err, response) => {
-        console.log('User.register: ', response);
+        console.log('User.register response: ', response);
         if (response && response.user) {
           const user = { 
             name: response.user.name,
@@ -117,11 +117,12 @@ class User {
    * */
   static logout(callback) {
     createRequest({
-      url: '/user/logout',
+      url: this.URL + '/logout',
       method: 'POST',
       responseType: 'json',
-      data: User.current(),
+      data: this.current(),
       callback: (err, response) => {
+        console.log('User.logout response: ', response);
         if (response) {
           User.unsetCurrent();
         } 
