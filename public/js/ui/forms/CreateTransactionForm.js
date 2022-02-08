@@ -10,18 +10,22 @@ class CreateTransactionForm extends AsyncForm {
   constructor(element) {
     super(element)
     this.renderAccountsList();
-  }
+    this.element = element;
+  }  
 
   /**
    * Получает список счетов с помощью Account.list
    * Обновляет в форме всплывающего окна выпадающий список
    * */
   renderAccountsList() {
-    const dropdownList = document.getElementById('expense-accounts-list');
-    const data = User.current();
-    Account.list( data, (err, response) => { 
-      console.log('ответ от Account.list - CreateTransactionForm: ', response);
-      dropdownList.insertAdjacentHTML('beforeend', `<option value="${response.id}">${response.name}</option>`)
+    const modaAccList = this.element.querySelector('select.accounts-select');
+    modaAccList.innerHTML = '';
+    const data = User.current();  
+    Account.list(data, (err, response) => { 
+      if (response.success) {
+        response.data.forEach(accObj => modaAccList.insertAdjacentHTML('beforeend', 
+        `<option value="${accObj.sum}">${accObj.name}</option>`))
+      }
     });
   }
 
@@ -34,13 +38,17 @@ class CreateTransactionForm extends AsyncForm {
   onSubmit(data) {
     Transaction.create(data, (err, response) => {
       if (response.success) {
-        console.log('CreateTransactionForm.onSubmit(data): ', data);
-        document.forms['createAccount'].addEventListener('submit', (ev) => {
-          ev.preventDefault();
-          const form = ev.currentTarget;
-          form.reset();
-        });        
-        App.getModal('createAccount').close();
+        let modalName;
+        switch (data.type) {
+          case 'expense':
+            modalName = 'newExpense';
+          break;
+          case 'income':
+            modalName = 'newIncome';
+          break;
+        }
+        document.forms[`new-${data.type}-form`].reset();
+        App.getModal(modalName).close();
         App.update();
       }
     });

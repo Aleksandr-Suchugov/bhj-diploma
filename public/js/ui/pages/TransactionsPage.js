@@ -15,6 +15,7 @@ class TransactionsPage {
       throw new Error("Невалидное значение для TransactionsWidget"); 
     }
     this.element = element;
+    console.log('TransactionPage this.element: ', element);
     this.registerEvents();
     this.lastOptions;
   }
@@ -24,7 +25,8 @@ class TransactionsPage {
    * */
   update() {
     this.render();
-    /*В случае, если метод render() был ранее вызван с какими-то опциями, при вызове update() эти опции необходимо передать повторно <- каким образо это можно проверить?*/
+    /*В случае, если метод render() был ранее вызван с какими-то опциями, при вызове update() эти опции необходимо передать повторно 
+    <- каким образо это можно проверить?*/
   }
 
   /**
@@ -33,19 +35,20 @@ class TransactionsPage {
    * методами TransactionsPage.removeTransaction и
    * TransactionsPage.removeAccount соответственно
    * */
+  //button.btn-danger
   registerEvents() {
-    const deleteBtns = document.querySelectorAll('button.btn-danger');
-    deleteBtns.forEach(button => {
-      button.addEventListener('click', (ev) => {
+    const deleteBtns = document.querySelector('.content-wrapper');
+    deleteBtns.addEventListener('click', (ev) => {
         ev.preventDefault();
-        if (button.classList.contains('remove-account')) {
-          TransactionsPage.removeAccount();
+        if (ev.target.classList.contains('remove-account')) {
+          this.removeAccount();
         }
-        else if (button.classList.contains('transaction__remove')) {
-          TransactionsPage.removeTransaction(button.dataset.id);
+        else if (ev.target.classList.contains('transaction__remove') || 
+                (ev.target.classList.contains('btn-danger') && 
+                !ev.target.classList.contains('remove-account'))) {
+          this.removeTransaction(button.dataset.id);
         }
       });
-    });
   }
 
   /**
@@ -60,12 +63,15 @@ class TransactionsPage {
   removeAccount() {
     if (this.lastOptions) {
       if (window.confirm('Вы действительно хотите удалить счет и все связанные транзакции?')) {
-        TransactionsPage.clear();
-        Account.remove(null, callback => {
-          if (callback.success) {
+        this.clear();
+        const data = User.current(); 
+        Account.remove(data, (err, response) => {
+          if (response.success) {
+            console.log('ooosss: ', response);
+            this.clear();
             App.getWidget("accounts").update();
           }
-        })
+        });
       }
     }
   }
@@ -78,11 +84,12 @@ class TransactionsPage {
    * */
   removeTransaction( id ) {
     if (window.confirm('Вы действительно хотите удалить эту транзакцию?')) {
-      Transaction.remove(id, callback => {
-        if (callback.success) {
+      Transaction.remove(id, (err, response) => {
+        if (response.success) {
+          console.log('bbbaaa: ', response);
           App.getWidget("accounts").update();
         }
-      })
+      });
     }
   }
 
@@ -94,19 +101,21 @@ class TransactionsPage {
    * */
   render(options){
     if (options) {
-      /*Для работы метода update следует сохранить options в свойство lastOptions. <- св-во какого класса?*/
       this.lastOptions = options;
-      Account.get(options, callback => {
-        if (callback.success) {
-          TransactionsPage.renderTitle(options.name);
+      console.log('TransactionPage this.render options: ', options.account_id);
+      Account.get(options.account_id, (err, response) => {
+        if (response.success) {
+          console.log('vvvbbb: ', response);
+          this.renderTitle(response.name);
         }
       });
-      /*список доходов и расходов пользователя <- каким образом получить/откуда? */
-      Transaction.list(this.element, callback => {
-        if (callback.success) {
-          TransactionsPage.renderTransactions(this.element);
+     
+      Transaction.list(options, (err, response) => {
+        if (response.success) {
+          console.log('rrrttt: ', response);
+          this.renderTransactions(response);
         }
-      })
+      });  
     }
   }
 
@@ -116,8 +125,8 @@ class TransactionsPage {
    * Устанавливает заголовок: «Название счёта»
    * */
   clear() {
-    TransactionsPage.renderTransactions();
-    TransactionsPage.renderTitle('Название счёта');
+    this.renderTransactions();
+    this.renderTitle('Название счёта');
   }
 
   /**
@@ -132,7 +141,7 @@ class TransactionsPage {
    * в формат «10 марта 2019 г. в 03:20»
    * */
   formatDate(date){
-    (new Intl.DateTimeFormat('ru-RU', {dateStyle: 'long', timeStyle: 'short'}).format(date)).replace(',', ' в');
+    return ((new Intl.DateTimeFormat('ru-RU', {dateStyle: 'long', timeStyle: 'short'}).format(date)).replace(',', ' в'));
   }
 
   /**
@@ -140,27 +149,30 @@ class TransactionsPage {
    * item - объект с информацией о транзакции
    * */
   getTransactionHTML(item){
-    `<div class="transaction ${item.type === 'income' ? 'transaction_income' : 'transaction_expense'} row">
-      <div class="col-md-7 transaction__details">
-        <div class="transaction__icon">
-            <span class="fa fa-money fa-2x"></span>
+    let trnzType;
+    item.type === 'income' ? trnzType = 'transaction_income' : trnzType = 'transaction_expense';
+    return (
+      `<div class="transaction ${trnzType} row">
+        <div class="col-md-7 transaction__details">
+          <div class="transaction__icon">
+              <span class="fa fa-money fa-2x"></span>
+          </div>
+          <div class="transaction__info">
+            <h4 class="transaction__title">Новый будильник</h4>
+            <div class="transaction__date">${this.formatDate(item.created_at)}</div>
+          </div>
         </div>
-        <div class="transaction__info">
-          <h4 class="transaction__title">Новый будильник</h4>
-          <div class="transaction__date">${TransactionsPage.formatDate(item.created_at)}</div>
+        <div class="col-md-3">
+          <div class="transaction__summ">
+            ${item.sum} <span class="currency">₽</span>
+          </div>
         </div>
-      </div>
-      <div class="col-md-3">
-        <div class="transaction__summ">
-          ${item.sum} <span class="currency">₽</span>
+        <div class="col-md-2 transaction__controls">
+          <button class="btn btn-danger transaction__remove" data-id="${item.account_id}">
+            <i class="fa fa-trash"></i>  
+          </button>
         </div>
-      </div>
-      <div class="col-md-2 transaction__controls">
-        <button class="btn btn-danger transaction__remove" data-id="${item.id}">
-          <i class="fa fa-trash"></i>  
-        </button>
-      </div>
-    </div>`
+      </div>`);
   }
 
   /**
@@ -168,12 +180,13 @@ class TransactionsPage {
    * используя getTransactionHTML
    * */
   renderTransactions(data){
+    console.log('Tpage.renderTransactions data: ', data);
     const trnzList = document.querySelector('.content');
     if (data) {
-      data.forEach(obj => trnzList.insertAdjacentHTML('beforeend', TransactionsPage.getTransactionHTML(obj)));   
+      data.forEach(obj => trnzList.insertAdjacentHTML('beforeend', this.getTransactionHTML(obj)));   
     }
-    else {
+    /*else {
       trnzList.children.forEach(element => element.remove());
-    }
+    }*/
   }
 }

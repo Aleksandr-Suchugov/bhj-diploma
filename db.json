@@ -7,166 +7,10 @@
       "id": "1"
     },
     {
-      "name": "asd",
-      "email": "undefined",
-      "password": "ASdawd",
-      "id": "yjocr0kxnhj9ev"
-    },
-    {
-      "name": "sadf",
-      "email": "asdf@sa.com",
-      "password": "asd123",
-      "id": "yjodowky19r5oj"
-    },
-    {
-      "name": "er",
-      "email": "af@sd.com",
-      "password": "asdf",
-      "id": "yjo49sky1ckees"
-    },
-    {
-      "name": "sdf",
-      "email": "asdf@df.ru",
-      "password": "awd1`3",
-      "id": "yjof5oky4gwnn5"
-    },
-    {
-      "name": "sdfasdf",
-      "email": "sfd@df.ru",
-      "password": "sdf123",
-      "id": "yjo2j4ky4imo3p"
-    },
-    {
-      "name": "sdf",
-      "email": "asf@vb.ru",
-      "password": "sdfag2",
-      "id": "yjodksky4io8ln"
-    },
-    {
-      "name": "asdad",
-      "email": "asdas@df.ri",
-      "password": "sdfvxc",
-      "id": "yjo5kwky4j0g39"
-    },
-    {
-      "name": "sdf",
-      "email": "asdf@sdf.ru",
-      "password": "dsf123",
-      "id": "yjobp8ky4jj5bs"
-    },
-    {
-      "name": "waer",
-      "email": "agd@sd.ru",
-      "password": "sdf234",
-      "id": "yjoiwsky4job21"
-    },
-    {
-      "name": "efd",
-      "email": "asdf@fd.ru",
-      "password": "sdf123",
-      "id": "yjoe0cky4jprdn"
-    },
-    {
-      "name": "wer",
-      "email": "wer@sd.ru",
-      "password": "sdf123",
-      "id": "yjo3o8ky4jwiq6"
-    },
-    {
-      "name": "aaw",
-      "email": "awde@ds.ro",
-      "password": "sdfsd32",
-      "id": "yjod44ky4jyeyg"
-    },
-    {
-      "name": "das",
-      "email": "dsfz@szdf.de",
-      "password": "sdsf123",
-      "id": "yjo1zsky4k3e42"
-    },
-    {
-      "name": "qwe",
-      "email": "qwe@rr.ru",
-      "password": "sdfg123",
-      "id": "yjo82wky4kh8za"
-    },
-    {
-      "name": "ewrf",
-      "email": "asd@fgh.fr",
-      "password": "aewf123",
-      "id": "yjohb8ky4kq2ys"
-    },
-    {
-      "name": "Ivan",
-      "email": "Ivan@abc.ru",
-      "password": "Ivan09",
-      "id": "yjoghgky4krh2t"
-    },
-    {
-      "name": "ewae",
-      "email": "aw@d.rt",
-      "password": "sfezdf",
-      "id": "yjofysky4m967c"
-    },
-    {
-      "name": "rfae",
-      "email": "aeafe@sf.ru",
-      "password": "dfa23",
-      "id": "yjoefoky4mrnj3"
-    },
-    {
-      "name": "Ivan",
-      "email": "ivan@doc.de",
-      "password": "asd123",
-      "id": "yjo6csky4mt9hw"
-    },
-    {
-      "name": "ew",
-      "email": "sdf@sd.re",
-      "password": "sdfbs",
-      "id": "yjo8acky4s66wp"
-    },
-    {
-      "name": "131",
-      "email": "sdf@ef.ve",
-      "password": "sdfb",
-      "id": "yjo3zoky4s9gf7"
-    },
-    {
-      "name": "ivan",
-      "email": "ivan@beco.ru",
-      "password": "beco123",
-      "id": "yjocnkky4swq23"
-    },
-    {
-      "name": "ivan",
-      "email": "ivan@beco.en",
-      "password": "asd123",
-      "id": "yjo2soky5hc8b2"
-    },
-    {
-      "name": "pavel",
-      "email": "pavel@beco.en",
-      "password": "zxc321",
-      "id": "25oka7fsky5qcpy4"
-    },
-    {
-      "name": "sdafa",
-      "email": "adfa@re.re",
-      "password": "zxced32",
-      "id": "25okak6wky5rrph9"
-    },
-    {
-      "name": "Asker",
-      "email": "a@beco.en",
-      "password": "zxc21",
-      "id": "yjonbwkyda4u1j"
-    },
-    {
-      "name": "Don",
-      "email": "d@beco.en",
-      "password": "xsw23",
-      "id": "yjoj84kydc2rle"
+      "name": "Bob",
+      "email": "bob@sd.ds",
+      "password": "asd32",
+      "id": "yjojhckz108nnn"
     }
   ],
   "accounts": [
@@ -184,6 +28,41 @@
       "name": "Бизнес",
       "user_id": "1",
       "id": "3"
+    },
+    {
+      "name": "dron",
+      "user_id": "yjojhckz108nnn",
+      "id": "yjo67wkz61i3ni"
+    },
+    {
+      "name": "ratata",
+      "user_id": "yjojhckz108nnn",
+      "id": "yjogaskz61j20y"
+    },
+    {
+      "name": "Sber",
+      "user_id": "yjojhckz108nnn",
+      "id": "yjoi2kkz625jz2"
+    },
+    {
+      "name": "Alfa",
+      "user_id": "yjojhckz108nnn",
+      "id": "yjoe0ckz62egn1"
+    },
+    {
+      "name": "erta",
+      "user_id": "yjojhckz108nnn",
+      "id": "yjo898kz7hyv8v"
+    },
+    {
+      "name": "dsav",
+      "user_id": "yjojhckz108nnn",
+      "id": "yjofuckz7icwgp"
+    },
+    {
+      "name": "bbk",
+      "user_id": "yjojhckz108nnn",
+      "id": "yjoe4kkza7kv6g"
     }
   ],
   "transactions": [
@@ -321,6 +200,150 @@
       "sum": 300000,
       "type": "expense",
       "user_id": "1"
+    },
+    {
+      "id": "yjoehgkz9yzzxo",
+      "type": "expense",
+      "name": "Pohod",
+      "sum": 5000,
+      "account_id": "0",
+      "user_id": "yjojhckz108nnn",
+      "created_at": "2022-02-05T15:07:25.739Z"
+    },
+    {
+      "id": "yjo9pskz9z1sq0",
+      "type": "expense",
+      "name": "Pohod",
+      "sum": 5000,
+      "account_id": "0",
+      "user_id": "yjojhckz108nnn",
+      "created_at": "2022-02-05T15:08:49.703Z"
+    },
+    {
+      "id": "yjo738kza01vbr",
+      "type": "income",
+      "name": "run",
+      "sum": 1000,
+      "account_id": "0",
+      "user_id": "yjojhckz108nnn",
+      "created_at": "2022-02-05T15:36:52.694Z"
+    },
+    {
+      "id": "yjodcckza037i3",
+      "type": "expense",
+      "name": "ert",
+      "sum": 300,
+      "account_id": "0",
+      "user_id": "yjojhckz108nnn",
+      "created_at": "2022-02-05T15:37:55.130Z"
+    },
+    {
+      "id": "yjotskza07057",
+      "type": "income",
+      "name": "run",
+      "sum": 300,
+      "account_id": "0",
+      "user_id": "yjojhckz108nnn",
+      "created_at": "2022-02-05T15:40:52.218Z"
+    },
+    {
+      "id": "yjohqwkza08abv",
+      "type": "income",
+      "name": "run",
+      "sum": 500,
+      "account_id": "0",
+      "user_id": "yjojhckz108nnn",
+      "created_at": "2022-02-05T15:41:52.074Z"
+    },
+    {
+      "id": "yjojnkkza0dkgu",
+      "type": "expense",
+      "name": "dinner",
+      "sum": 300,
+      "account_id": "0",
+      "user_id": "yjojhckz108nnn",
+      "created_at": "2022-02-05T15:45:58.493Z"
+    },
+    {
+      "id": "yjobtgkza0f23c",
+      "type": "income",
+      "name": "run",
+      "sum": 5000,
+      "account_id": "0",
+      "user_id": "yjojhckz108nnn",
+      "created_at": "2022-02-05T15:47:07.991Z"
+    },
+    {
+      "id": "yjo8vgkza0g112",
+      "type": "expense",
+      "name": "dinner",
+      "sum": 300,
+      "account_id": "0",
+      "user_id": "yjojhckz108nnn",
+      "created_at": "2022-02-05T15:47:53.269Z"
+    },
+    {
+      "id": "yjo2nkkza0nr11",
+      "type": "income",
+      "name": "transf",
+      "sum": 1500,
+      "account_id": "0",
+      "user_id": "yjojhckz108nnn",
+      "created_at": "2022-02-05T15:53:53.556Z"
+    },
+    {
+      "id": "yjoe0kkza7lath",
+      "type": "income",
+      "name": "phone",
+      "sum": 500,
+      "account_id": "0",
+      "user_id": "yjojhckz108nnn",
+      "created_at": "2022-02-05T19:07:56.548Z"
+    },
+    {
+      "id": "yjo23kkzbkyzga",
+      "type": "income",
+      "name": "fist",
+      "sum": 500,
+      "account_id": "0",
+      "user_id": "yjojhckz108nnn",
+      "created_at": "2022-02-06T18:10:16.185Z"
+    },
+    {
+      "id": "yjokwokzd6tvok",
+      "type": "income",
+      "name": "werf",
+      "sum": 100,
+      "account_id": "0",
+      "user_id": "yjojhckz108nnn",
+      "created_at": "2022-02-07T21:09:55.748Z"
+    },
+    {
+      "id": "yjonmwkzeicxrq",
+      "type": "expense",
+      "name": "Www",
+      "sum": 2800,
+      "account_id": "0",
+      "user_id": "yjojhckz108nnn",
+      "created_at": "2022-02-08T19:20:26.869Z"
+    },
+    {
+      "id": "yjob08kzeijsdx",
+      "type": "income",
+      "name": "ccc",
+      "sum": 500,
+      "account_id": "0",
+      "user_id": "yjojhckz108nnn",
+      "created_at": "2022-02-08T19:25:46.484Z"
+    },
+    {
+      "id": "yjob0wkzeks2ab",
+      "type": "income",
+      "name": "asdgf",
+      "sum": 400,
+      "account_id": "0",
+      "user_id": "yjojhckz108nnn",
+      "created_at": "2022-02-08T20:28:11.794Z"
     }
   ]
 }

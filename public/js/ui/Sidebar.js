@@ -47,11 +47,9 @@ class Sidebar {
             App.getModal('register').open();
           break;
           case 'menu-item_logout':
-            User.logout(response => {
-              if (response.success) {
-                App.setState('init');
-              }
-            })
+            User.logout(response => 
+                App.setState('init')
+              );
           break;
         }
       });

@@ -5,21 +5,23 @@
 const createRequest = (options = {}) => {
     if (options.data) {
         const xhr = new XMLHttpRequest;
-        let sendDataURL = options.url + '?';
-        console.log('createRequest options: ', options);
+        let formData = new FormData();
+        let sendURL = options.url;
         if (options.method !== 'GET') {
-            const formData = new FormData();
-            console.log('options.data: ', options.data);
+            console.log('options.data !GET: ', options.data);
             Object.entries(options.data).forEach(([key, value]) => formData.append(key, value));
-            sendDataURL = formData;
         }
         else {
-            Object.entries(options.data).forEach(([key, value]) => sendDataURL += `${key}=${value}&`).slice(0, -1);
+            sendURL += '?';
+            for (let prop in options.data) {
+                sendURL += `${prop}=${options.data.prop}&`
+            }
+            sendURL = sendURL.slice(0, -1);
+            formData = '';
         }
-        console.log('createRequest URL: ', sendDataURL);
         try {
-            xhr.open(options.method, sendDataURL);
-            xhr.send();       
+            xhr.open(options.method, sendURL);
+            xhr.send(formData);       
         }
         catch (err) {
             options.callback(err, null);
