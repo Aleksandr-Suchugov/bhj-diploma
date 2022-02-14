@@ -12,12 +12,14 @@ const createRequest = (options = {}) => {
             Object.entries(options.data).forEach(([key, value]) => formData.append(key, value));
         }
         else {
-            sendURL += '?';
-            for (let prop in options.data) {
-                sendURL += `${prop}=${options.data.prop}&`
-            }
-            sendURL = sendURL.slice(0, -1);
             formData = '';
+            if (!sendURL.includes('/account')) {
+                sendURL += '?';
+                for (let prop in options.data) {
+                    sendURL += `${prop}=${options.data.prop}&`
+                }
+                sendURL = sendURL.slice(0, -1);    
+            }
         }
         try {
             xhr.open(options.method, sendURL);

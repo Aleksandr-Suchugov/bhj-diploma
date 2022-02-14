@@ -57,7 +57,7 @@ class AccountsWidget {
     if (data) {
       Account.list(data, (err, response) => {
         if (response.success) {
-          console.log('ответ от Account.list - AccountsWidget: ', response);
+          console.log('AccountsWidget response: ', response)
           this.clear();
           this.renderItem(response.data);
         }
@@ -98,6 +98,7 @@ class AccountsWidget {
    * item - объект с данными о счёте
    * */
   getAccountHTML(item){
+    console.log('AccW.getAccHTML: ',item);
     return (
       `<li class="account" data-id="${item.id}">
         <a href="#">

@@ -26,7 +26,7 @@ class TransactionsPage {
   update() {
     this.render();
     /*В случае, если метод render() был ранее вызван с какими-то опциями, при вызове update() эти опции необходимо передать повторно 
-    <- каким образо это можно проверить?*/
+    <- каким образом это можно проверить?*/
   }
 
   /**
@@ -43,10 +43,9 @@ class TransactionsPage {
         if (ev.target.classList.contains('remove-account')) {
           this.removeAccount();
         }
-        else if (ev.target.classList.contains('transaction__remove') || 
-                (ev.target.classList.contains('btn-danger') && 
-                !ev.target.classList.contains('remove-account'))) {
-          this.removeTransaction(button.dataset.id);
+        else if (ev.target.classList.contains('btn-danger')) {    
+                  console.log(ev.target.dataset.id);
+          this.removeTransaction(ev.target.dataset.id);
         }
       });
   }
@@ -64,7 +63,7 @@ class TransactionsPage {
     if (this.lastOptions) {
       if (window.confirm('Вы действительно хотите удалить счет и все связанные транзакции?')) {
         this.clear();
-        const data = User.current(); 
+        const data = document.querySelector('li.active').dataset.id;
         Account.remove(data, (err, response) => {
           if (response.success) {
             console.log('ooosss: ', response);
@@ -87,6 +86,7 @@ class TransactionsPage {
       Transaction.remove(id, (err, response) => {
         if (response.success) {
           console.log('bbbaaa: ', response);
+          response.filter(trnzObj => trnzObj.id !== id)
           App.getWidget("accounts").update();
         }
       });
@@ -102,18 +102,21 @@ class TransactionsPage {
   render(options){
     if (options) {
       this.lastOptions = options;
-      console.log('TransactionPage this.render options: ', options.account_id);
+      console.log('TransactionPage this.render options: ', options);
+      //метод ниже не срабатывает и не выдает ошибок
       Account.get(options.account_id, (err, response) => {
+        console.log('vvvbbb: ', response);
         if (response.success) {
-          console.log('vvvbbb: ', response);
           this.renderTitle(response.name);
         }
       });
-     
+      //для подстановки описания счета я воспользовался значением из активного элемента списка
+      this.renderTitle(document.querySelector('li.active > a > span').textContent);
+      //ответ метода возвращает undefined, хотя первый аргумент это объект с id счета
       Transaction.list(options, (err, response) => {
         if (response.success) {
           console.log('rrrttt: ', response);
-          this.renderTransactions(response);
+          this.renderTransactions(response.data);
         }
       });  
     }
@@ -124,16 +127,18 @@ class TransactionsPage {
    * TransactionsPage.renderTransactions() с пустым массивом.
    * Устанавливает заголовок: «Название счёта»
    * */
-  clear() {
+  clear() { 
     this.renderTransactions();
-    this.renderTitle('Название счёта');
+    this.renderTitle("Название счёта");
   }
 
   /**
    * Устанавливает заголовок в элемент .content-title
    * */
   renderTitle(name){
-    document.querySelector('.content-title').textContent = name;
+    const accName = document.querySelector('.content-title');
+    accName.textContent = '';
+    accName.insertAdjacentText('afterbegin', name);
   }
 
   /**
@@ -141,7 +146,7 @@ class TransactionsPage {
    * в формат «10 марта 2019 г. в 03:20»
    * */
   formatDate(date){
-    return ((new Intl.DateTimeFormat('ru-RU', {dateStyle: 'long', timeStyle: 'short'}).format(date)).replace(',', ' в'));
+    return ((new Intl.DateTimeFormat('ru-RU', {dateStyle: 'long', timeStyle: 'short'}).format(Date.parse(date)).replace(',', ' в')));
   }
 
   /**
@@ -149,6 +154,7 @@ class TransactionsPage {
    * item - объект с информацией о транзакции
    * */
   getTransactionHTML(item){
+    console.log('html block: ', item)
     let trnzType;
     item.type === 'income' ? trnzType = 'transaction_income' : trnzType = 'transaction_expense';
     return (
@@ -158,7 +164,7 @@ class TransactionsPage {
               <span class="fa fa-money fa-2x"></span>
           </div>
           <div class="transaction__info">
-            <h4 class="transaction__title">Новый будильник</h4>
+            <h4 class="transaction__title">${item.name}</h4>
             <div class="transaction__date">${this.formatDate(item.created_at)}</div>
           </div>
         </div>
@@ -168,7 +174,7 @@ class TransactionsPage {
           </div>
         </div>
         <div class="col-md-2 transaction__controls">
-          <button class="btn btn-danger transaction__remove" data-id="${item.account_id}">
+          <button class="btn btn-danger transaction__remove" data-id="${item.id}">
             <i class="fa fa-trash"></i>  
           </button>
         </div>
@@ -179,14 +185,17 @@ class TransactionsPage {
    * Отрисовывает список транзакций на странице
    * используя getTransactionHTML
    * */
-  renderTransactions(data){
-    console.log('Tpage.renderTransactions data: ', data);
+  renderTransactions(dataList){
+    console.log('Tpage.renderTransactions dataList: ', dataList);
     const trnzList = document.querySelector('.content');
-    if (data) {
-      data.forEach(obj => trnzList.insertAdjacentHTML('beforeend', this.getTransactionHTML(obj)));   
+    trnzList.innerHTML = '';
+    if (dataList) {
+      dataList.data.forEach(obj => trnzList.insertAdjacentHTML('beforeend', this.getTransactionHTML(obj)));   
     }
-    /*else {
-      trnzList.children.forEach(element => element.remove());
-    }*/
+    else {
+      for (let element of trnzList.children) {
+        element.remove();
+      }
+    }
   }
 }

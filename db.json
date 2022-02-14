@@ -11,6 +11,18 @@
       "email": "bob@sd.ds",
       "password": "asd32",
       "id": "yjojhckz108nnn"
+    },
+    {
+      "name": "Ivan",
+      "email": "i@van.i",
+      "password": "ivan21",
+      "id": "yjo53gkzfvha2c"
+    },
+    {
+      "name": "arsen",
+      "email": "arsen@ar.se",
+      "password": "arsen#",
+      "id": "yjogq8kzk17loy"
     }
   ],
   "accounts": [
@@ -30,39 +42,19 @@
       "id": "3"
     },
     {
-      "name": "dron",
-      "user_id": "yjojhckz108nnn",
-      "id": "yjo67wkz61i3ni"
-    },
-    {
-      "name": "ratata",
-      "user_id": "yjojhckz108nnn",
-      "id": "yjogaskz61j20y"
-    },
-    {
       "name": "Sber",
-      "user_id": "yjojhckz108nnn",
-      "id": "yjoi2kkz625jz2"
+      "user_id": "yjogq8kzk17loy",
+      "id": "yjo254kzk1h7ru"
     },
     {
       "name": "Alfa",
-      "user_id": "yjojhckz108nnn",
-      "id": "yjoe0ckz62egn1"
+      "user_id": "yjogq8kzk17loy",
+      "id": "yjo87gkzk1hdjo"
     },
     {
-      "name": "erta",
-      "user_id": "yjojhckz108nnn",
-      "id": "yjo898kz7hyv8v"
-    },
-    {
-      "name": "dsav",
-      "user_id": "yjojhckz108nnn",
-      "id": "yjofuckz7icwgp"
-    },
-    {
-      "name": "bbk",
-      "user_id": "yjojhckz108nnn",
-      "id": "yjoe4kkza7kv6g"
+      "name": "Tinek",
+      "user_id": "yjogq8kzk17loy",
+      "id": "yjokhkkzkbj05m"
     }
   ],
   "transactions": [
@@ -202,148 +194,49 @@
       "user_id": "1"
     },
     {
-      "id": "yjoehgkz9yzzxo",
+      "id": "yjof64kzk1hscl",
+      "type": "income",
+      "name": "Zarplata",
+      "sum": 15000,
+      "account_id": "yjo254kzk1h7ru",
+      "user_id": "yjogq8kzk17loy",
+      "created_at": "2022-02-12T16:14:56.708Z"
+    },
+    {
+      "id": "yjobbokzk1idue",
       "type": "expense",
-      "name": "Pohod",
-      "sum": 5000,
-      "account_id": "0",
-      "user_id": "yjojhckz108nnn",
-      "created_at": "2022-02-05T15:07:25.739Z"
+      "name": "PIL",
+      "sum": 8000,
+      "account_id": "yjo87gkzk1hdjo",
+      "user_id": "yjogq8kzk17loy",
+      "created_at": "2022-02-12T16:15:24.565Z"
     },
     {
-      "id": "yjo9pskz9z1sq0",
+      "id": "yjoca4kzkajzh0",
+      "type": "income",
+      "name": "Perevod",
+      "sum": 3000,
+      "account_id": "yjo87gkzk1hdjo",
+      "user_id": "yjogq8kzk17loy",
+      "created_at": "2022-02-12T20:28:35.795Z"
+    },
+    {
+      "id": "yjo3wwkzkakgqj",
       "type": "expense",
-      "name": "Pohod",
-      "sum": 5000,
-      "account_id": "0",
-      "user_id": "yjojhckz108nnn",
-      "created_at": "2022-02-05T15:08:49.703Z"
+      "name": "Perevod",
+      "sum": 3000,
+      "account_id": "yjo254kzk1h7ru",
+      "user_id": "yjogq8kzk17loy",
+      "created_at": "2022-02-12T20:28:58.170Z"
     },
     {
-      "id": "yjo738kza01vbr",
+      "id": "yjo3pgkzkbkcp6",
       "type": "income",
-      "name": "run",
-      "sum": 1000,
-      "account_id": "0",
-      "user_id": "yjojhckz108nnn",
-      "created_at": "2022-02-05T15:36:52.694Z"
-    },
-    {
-      "id": "yjodcckza037i3",
-      "type": "expense",
-      "name": "ert",
-      "sum": 300,
-      "account_id": "0",
-      "user_id": "yjojhckz108nnn",
-      "created_at": "2022-02-05T15:37:55.130Z"
-    },
-    {
-      "id": "yjotskza07057",
-      "type": "income",
-      "name": "run",
-      "sum": 300,
-      "account_id": "0",
-      "user_id": "yjojhckz108nnn",
-      "created_at": "2022-02-05T15:40:52.218Z"
-    },
-    {
-      "id": "yjohqwkza08abv",
-      "type": "income",
-      "name": "run",
-      "sum": 500,
-      "account_id": "0",
-      "user_id": "yjojhckz108nnn",
-      "created_at": "2022-02-05T15:41:52.074Z"
-    },
-    {
-      "id": "yjojnkkza0dkgu",
-      "type": "expense",
-      "name": "dinner",
-      "sum": 300,
-      "account_id": "0",
-      "user_id": "yjojhckz108nnn",
-      "created_at": "2022-02-05T15:45:58.493Z"
-    },
-    {
-      "id": "yjobtgkza0f23c",
-      "type": "income",
-      "name": "run",
-      "sum": 5000,
-      "account_id": "0",
-      "user_id": "yjojhckz108nnn",
-      "created_at": "2022-02-05T15:47:07.991Z"
-    },
-    {
-      "id": "yjo8vgkza0g112",
-      "type": "expense",
-      "name": "dinner",
-      "sum": 300,
-      "account_id": "0",
-      "user_id": "yjojhckz108nnn",
-      "created_at": "2022-02-05T15:47:53.269Z"
-    },
-    {
-      "id": "yjo2nkkza0nr11",
-      "type": "income",
-      "name": "transf",
-      "sum": 1500,
-      "account_id": "0",
-      "user_id": "yjojhckz108nnn",
-      "created_at": "2022-02-05T15:53:53.556Z"
-    },
-    {
-      "id": "yjoe0kkza7lath",
-      "type": "income",
-      "name": "phone",
-      "sum": 500,
-      "account_id": "0",
-      "user_id": "yjojhckz108nnn",
-      "created_at": "2022-02-05T19:07:56.548Z"
-    },
-    {
-      "id": "yjo23kkzbkyzga",
-      "type": "income",
-      "name": "fist",
-      "sum": 500,
-      "account_id": "0",
-      "user_id": "yjojhckz108nnn",
-      "created_at": "2022-02-06T18:10:16.185Z"
-    },
-    {
-      "id": "yjokwokzd6tvok",
-      "type": "income",
-      "name": "werf",
-      "sum": 100,
-      "account_id": "0",
-      "user_id": "yjojhckz108nnn",
-      "created_at": "2022-02-07T21:09:55.748Z"
-    },
-    {
-      "id": "yjonmwkzeicxrq",
-      "type": "expense",
-      "name": "Www",
-      "sum": 2800,
-      "account_id": "0",
-      "user_id": "yjojhckz108nnn",
-      "created_at": "2022-02-08T19:20:26.869Z"
-    },
-    {
-      "id": "yjob08kzeijsdx",
-      "type": "income",
-      "name": "ccc",
-      "sum": 500,
-      "account_id": "0",
-      "user_id": "yjojhckz108nnn",
-      "created_at": "2022-02-08T19:25:46.484Z"
-    },
-    {
-      "id": "yjob0wkzeks2ab",
-      "type": "income",
-      "name": "asdgf",
-      "sum": 400,
-      "account_id": "0",
-      "user_id": "yjojhckz108nnn",
-      "created_at": "2022-02-08T20:28:11.794Z"
+      "name": "Nakopleniya",
+      "sum": 150000,
+      "account_id": "yjokhkkzkbj05m",
+      "user_id": "yjogq8kzk17loy",
+      "created_at": "2022-02-12T20:56:52.553Z"
     }
   ]
 }
