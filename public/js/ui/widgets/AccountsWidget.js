@@ -57,7 +57,6 @@ class AccountsWidget {
     if (data) {
       Account.list(data, (err, response) => {
         if (response.success) {
-          console.log('AccountsWidget response: ', response)
           this.clear();
           this.renderItem(response.data);
         }
@@ -88,7 +87,6 @@ class AccountsWidget {
       selectedAcc.classList.remove('active');
     }
     element.classList.add('active');
-    console.log('CreateAccountForm.onSelectAccount element: ', element);
     App.showPage( 'transactions', { account_id: element.dataset.id });
   }
 
@@ -98,7 +96,6 @@ class AccountsWidget {
    * item - объект с данными о счёте
    * */
   getAccountHTML(item){
-    console.log('AccW.getAccHTML: ',item);
     return (
       `<li class="account" data-id="${item.id}">
         <a href="#">

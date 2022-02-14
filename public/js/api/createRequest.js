@@ -8,17 +8,14 @@ const createRequest = (options = {}) => {
         let formData = new FormData();
         let sendURL = options.url;
         if (options.method !== 'GET') {
-            console.log('options.data !GET: ', options.data);
             Object.entries(options.data).forEach(([key, value]) => formData.append(key, value));
         }
         else {
             formData = '';
             if (!sendURL.includes('/account')) {
                 sendURL += '?';
-                for (let prop in options.data) {
-                    sendURL += `${prop}=${options.data.prop}&`
-                }
-                sendURL = sendURL.slice(0, -1);    
+                Object.entries(options.data).forEach(([key, value]) => sendURL += `${key}=${value}&`);
+                sendURL = sendURL.slice(0, -1);  
             }
         }
         try {

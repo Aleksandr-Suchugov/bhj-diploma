@@ -43,7 +43,6 @@ class User {
       responseType: 'json',
       data: this.current(),
       callback: (err, response) => {
-        console.log('User.fetch callback response: ', response);
         if (response && response.user) {
           const user = { 
             name: response.user.name,
@@ -98,7 +97,6 @@ class User {
       responseType: 'json',
       data,
       callback: (err, response) => {
-        console.log('User.register response: ', response);
         if (response && response.user) {
           const user = { 
             name: response.user.name,
