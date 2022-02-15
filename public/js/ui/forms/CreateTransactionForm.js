@@ -22,7 +22,6 @@ class CreateTransactionForm extends AsyncForm {
     modaAccList.innerHTML = '';
     const data = User.current();  
     Account.list(data, (err, response) => { 
-    //  console.log('CreateTransactionForm.renderAccList: ', response)
       if (response.success) {
         response.data.forEach(accObj => modaAccList.insertAdjacentHTML('beforeend', 
         `<option value="${accObj.id}">${accObj.name}</option>`))
@@ -39,7 +38,6 @@ class CreateTransactionForm extends AsyncForm {
   onSubmit(data) {
     console.log("acc_submit data:", data);
     Transaction.create(data, (err, response) => {
-    //  console.log("acc_submit response:", response);
       if (response.success) {
         let modalName;
         switch (data.type) {

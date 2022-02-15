@@ -71,7 +71,6 @@ class User {
       responseType: 'json',
       data,
       callback: (err, response) => {
-        console.log('User.login response: ', response);
         if (response && response.user) {
           const user = { 
             name: response.user.name,
@@ -120,7 +119,6 @@ class User {
       responseType: 'json',
       data: this.current(),
       callback: (err, response) => {
-        console.log('User.logout response: ', response);
         if (response) {
           User.unsetCurrent();
         } 

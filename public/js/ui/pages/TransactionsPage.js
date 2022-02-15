@@ -15,7 +15,6 @@ class TransactionsPage {
       throw new Error("Невалидное значение для TransactionsWidget"); 
     }
     this.element = element;
-  //  console.log('TransactionPage this.element: ', element);
     this.registerEvents();
     this.lastOptions;
   }
@@ -63,12 +62,10 @@ class TransactionsPage {
       if (window.confirm('Вы действительно хотите удалить счет и все связанные транзакции?')) {
         this.clear();
         const id = document.querySelector('li.active').dataset.id;
-        console.log('Account id DELETE, removeAccount: ', id);
-        Account.remove({account_id: id}, (err, response) => {
-          console.log('ooosss: ', response);
+        Account.remove({id: id}, (err, response) => {
           if (response.success) {
             this.clear();
-            App.getWidget("accounts").update();
+            App.update();
           }
         });
       }
@@ -85,7 +82,6 @@ class TransactionsPage {
     console.log('account id DELETE, removeTransaction: ', id)
     if (window.confirm('Вы действительно хотите удалить эту транзакцию?')) {
       Transaction.remove({id: id}, (err, response) => {
-        console.log('bbbaaa: ', response);
         if (response.success) {
           App.update();
         }
@@ -102,7 +98,6 @@ class TransactionsPage {
   render(options){
     if (options) {
       this.lastOptions = options;
-      console.log('TransactionPage this.render options: ', options);
       //метод ниже не срабатывает и не выдает ошибок
       Account.get(options.account_id, (err, response) => {
         console.log('vvvbbb: ', response);
@@ -111,11 +106,10 @@ class TransactionsPage {
         }
       });
       //для подстановки описания счета я воспользовался значением из активного элемента списка
-      // this.renderTitle(document.querySelector('li.active > a > span').textContent);
+      this.renderTitle(document.querySelector('li.active > a > span').textContent);
       //ответ метода возвращает undefined, хотя первый аргумент это объект с id счета
       Transaction.list(options, (err, response) => {
         if (response.success) {
-          // console.log('rrrttt: ', response);
           this.renderTransactions(response.data);
         }
       });  
@@ -154,7 +148,6 @@ class TransactionsPage {
    * item - объект с информацией о транзакции
    * */
   getTransactionHTML(item){
-    // console.log('html block: ', item)
     let trnzType;
     item.type === 'income' ? trnzType = 'transaction_income' : trnzType = 'transaction_expense';
     return (
@@ -186,7 +179,6 @@ class TransactionsPage {
    * используя getTransactionHTML
    * */
   renderTransactions(dataList){
-  //  console.log('Tpage.renderTransactions dataList: ', dataList);
     const trnzList = document.querySelector('.content');
     trnzList.innerHTML = '';
     if (dataList) {
