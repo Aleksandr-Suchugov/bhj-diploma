@@ -23,7 +23,7 @@ class TransactionsPage {
    * Вызывает метод render для отрисовки страницы
    * */
   update() {
-    this.render();
+    this.render(this.lastOptions);
     /*В случае, если метод render() был ранее вызван с какими-то опциями, при вызове update() эти опции необходимо передать повторно 
     <- каким образом это можно проверить?*/
   }
@@ -79,7 +79,6 @@ class TransactionsPage {
    * либо обновляйте текущую страницу (метод update) и виджет со счетами
    * */
   removeTransaction( id ) {
-    console.log('account id DELETE, removeTransaction: ', id)
     if (window.confirm('Вы действительно хотите удалить эту транзакцию?')) {
       Transaction.remove({id: id}, (err, response) => {
         if (response.success) {
@@ -98,16 +97,11 @@ class TransactionsPage {
   render(options){
     if (options) {
       this.lastOptions = options;
-      //метод ниже не срабатывает и не выдает ошибок
       Account.get(options.account_id, (err, response) => {
-        console.log('vvvbbb: ', response);
         if (response.success) {
-          this.renderTitle(response.name);
+          this.renderTitle(response.data.name);
         }
       });
-      //для подстановки описания счета я воспользовался значением из активного элемента списка
-      this.renderTitle(document.querySelector('li.active > a > span').textContent);
-      //ответ метода возвращает undefined, хотя первый аргумент это объект с id счета
       Transaction.list(options, (err, response) => {
         if (response.success) {
           this.renderTransactions(response.data);

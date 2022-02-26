@@ -36,7 +36,6 @@ class CreateTransactionForm extends AsyncForm {
    * в котором находится форма
    * */
   onSubmit(data) {
-    console.log("acc_submit data:", data);
     Transaction.create(data, (err, response) => {
       if (response.success) {
         let modalName;

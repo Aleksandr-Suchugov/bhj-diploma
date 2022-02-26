@@ -3,7 +3,7 @@
  * на сервер.
  * */
 const createRequest = (options = {}) => {
-    if (options.data) {
+    if (options) {
         const xhr = new XMLHttpRequest;
         let formData = new FormData();
         let sendURL = options.url;
